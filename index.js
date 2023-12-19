@@ -5,7 +5,7 @@ require('./DB/connection')
 const routes = require('./Routes/router')
 
 const dc_Server = express()
-dc_Server.use(cors)
+dc_Server.use(cors())
 dc_Server.use(express.json())
 dc_Server.use(routes)
 const PORT = 3000 || process.env.PORT
