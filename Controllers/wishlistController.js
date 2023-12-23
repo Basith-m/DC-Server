@@ -32,3 +32,16 @@ exports.getWishlistController  = async (req,res)=>{
         res.status(401).json(err)       
     }
 }
+
+// remove wishlist item
+exports.removeWishlistItemController = async (req,res)=>{
+    const {id} = req.params
+    try{
+        const removeItem = await wishlists.findByIdAndDelete({_id:id})
+        req.status(200).json(removeItem)
+    }
+    catch(err){
+        console.log(err);
+        res.status(401).json(err)
+    }
+}
