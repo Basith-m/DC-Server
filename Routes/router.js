@@ -24,5 +24,9 @@ router.delete('/wishlist/remove/:id',jwtMiddleware,wishlistController.removeWish
 router.post('/cart/add',jwtMiddleware,cartController.addToCartController)
 // get cart
 router.get('/cart/get-all-products',jwtMiddleware,cartController.getCartController)
+// increment cart
+router.get('/cart/increment/:id',jwtMiddleware,cartController.incrementCartController)
+// decrement cart
+router.get('/cart/decrement/:id',jwtMiddleware,cartController.decrementCartController)
 
 module.exports = router

@@ -40,7 +40,7 @@ const  cartSchema = new mongoose.Schema({
     },
     grandTotal:{
         type:Number,
-        require:true
+        required:true
     },
     userId:{
         type:String,
