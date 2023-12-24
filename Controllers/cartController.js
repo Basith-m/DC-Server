@@ -17,7 +17,7 @@ exports.addToCartController = async (req, res) => {
                 id, title, price, description, category, image, quantity, userId, rating, grandTotal: price
             })
             await newProduct.save()
-            res.status(200).json("Items added to your cart")
+            res.status(200).json("Item added to your cart")
         }
     }
     catch (err) {
@@ -77,6 +77,30 @@ exports.decrementCartController = async (req, res) => {
             res.status(404).json("Product not found!!!")
         }
     } catch (err) {
+        res.status(401).json(err)
+    }
+}
+
+// remove cart item
+exports.removeCartItemController = async (req, res) => {
+    const { id } = req.params
+    try {
+        await carts.deleteOne({ _id: id })
+        res.status(200).json("Item removed..")
+    }
+    catch (err) {
+        res.status(401).json(err)
+    }
+}
+
+// empty
+exports.emptyCartController = async (req, res) => {
+    const userId = req.payload
+    try {
+        await carts.deleteMany({ userId })
+        res.status(200).json("All Items removed..")
+    }
+    catch (err) {
         res.status(401).json(err)
     }
 }
